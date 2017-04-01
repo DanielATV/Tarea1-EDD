@@ -10,3 +10,5 @@
 * Returns:
 * TipoRetorno, Descripción retorno
 *****/
+
+/* The C library function int tolower(int c) converts a given letter to lowercase */
