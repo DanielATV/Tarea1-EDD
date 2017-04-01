@@ -12,3 +12,16 @@
 *****/
 
 /* The C library function int tolower(int c) converts a given letter to lowercase */
+
+/******
+* Cosas por hacer:
+* Funcion que pase todo a minusculas
+* Funcion que quite acentos
+* Funcion que escriba el archivo
+* Funcion que recorra el archivo
+*******
+* Funcion anagrama:
+* Compara largos
+* Si la letra no esta sigue iterando
+* Funcion que cuente cada letra y le asocie el arreglo abecedario
+* Funcion que compare los arreglos
