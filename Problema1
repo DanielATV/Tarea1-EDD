@@ -18,7 +18,7 @@
 * Funcion que pase todo a minusculas
 * Funcion que quite acentos
 * Funcion que escriba el archivo
-* Funcion que recorra el archivo
+* Funcion que cree el arhivo axiliar del conjunto S de n strings
 *******
 * Funcion anagrama:
 * Compara largos
