@@ -1,0 +1,165 @@
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+//#include <ctype.h>
+
+void swap(int *x, int *y)
+{
+	int temp = *x;
+	*x = *y;
+	*y = temp;
+	return;
+}
+
+void maxymin(int *x, int *y)
+{
+	if (*x < *y)
+		swap(x,y);
+}
+/*
+char **palabras(char arch[]){
+	archivo = &arch;
+	
+	
+
+}
+*/
+
+
+void ordenarpalabra(char *a, int n)
+{
+	
+	
+
+	//printf("%s\n",a);
+	//printf("%d\n",n);
+
+
+
+	//if ('a' < 'b')
+	//	printf("lo es\n");
+	
+
+	int i,j,aux;
+
+	for(i=0;i<=n-1;i++)
+	{
+		for(j=0;j<n-1-i;j++)
+		{
+			//printf("%d\n",(int)a[j]>(int)a[j+1]);
+			if(a[j]<a[j+1])
+			{
+				aux = a[j];
+				//printf("aux es %c\n",aux);
+				a[j] = a[j+1];
+				//printf("aj es %c\n",a[j]);
+				a[j+1] = aux;
+				//printf("aj+1 es %c\n",a[j+1]);
+				//printf("a0 es %c\n",a[0]);
+				//printf("la palabra es %s\n",a);	
+			}
+		}
+	}
+
+	//printf("%c\n",a[0]);
+	//printf("%s\n",a);
+	//return a;
+
+}
+
+/*void guardardatos(char *texto, int *n, int *m, char *ms, char *ns)
+{
+		
+	//printf("%s\n",texto);
+
+}*/
+
+int anagramas(char **s, int n, char *str){
+	return 0;
+}
+
+void ordenartodaspalabras(char **s, int n){
+	
+	for(int i=0;i<n;i++){
+		ordenarpalabra(s[i], strlen(s[i]));
+	}
+
+
+}
+
+
+
+int main(){
+
+	char a[5] = "hola";
+	ordenarpalabra(a,5);
+
+	int n; int m; char *ms; char *ns;
+	char texto[] = "anagrama1.txt";
+
+	
+	FILE *fp = fopen(texto,"r");
+	
+	fscanf(fp,"%d",&n);
+	//printf("%d\n",n);
+
+	ns = (char *)malloc(n*sizeof(char));
+
+	int l=0;
+	int *l1=(int*)malloc(n*sizeof(int));
+	for(int i =0;i<n;i++ ){
+		
+		fscanf(fp,"%s",&ns[i]);
+		//---
+		//char *aux;
+		//fscanf(fp,"%s",aux);
+		//printf("%s\n",ordenarpalabra(aux, strlen(aux)));
+		//ns[i] = ordenarpalabra(aux, strlen(aux));
+
+		//--
+		l =strlen(&ns[i]);
+		l1[i] = l;
+		ordenarpalabra(&ns[i],l);
+		
+		printf ("%s , %d \n",&ns[i], l);
+	}
+	
+	fscanf(fp,"%d",&m);
+	//printf("%d\n",m);
+	ms = (char *)malloc(m*sizeof(char));
+
+	int ll = 0;
+	int *l2=(int*)malloc(m*sizeof(int));
+	for(int j=0;j<m;j++){
+		fscanf(fp,"%s",&ms[j]);	
+		ll =strlen(&ms[j]);
+		l2[j]=ll;
+	}
+	
+
+	//fscanf(fp,"%d",&n);
+	
+	
+	
+
+	
+	
+	
+
+	fclose(fp);
+	free(ns);
+	free(ms);
+	
+
+	//for(int x=0;x<n;x++){
+	//int ll = strlen(&ns[x]);
+	//printf("%d\n",ll);
+	//}
+	//ordenartodaspalabras(ns,n);
+	
+
+	
+
+	return 0;
+}
+
