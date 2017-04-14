@@ -1,10 +1,3 @@
-/****
-* Cosas por hacer:
-* Funcion deposito y extracion
-* Funcion trasnferencia
-* Funcion actualizarSaldo
-****/
-
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
@@ -19,7 +12,7 @@ typedef struct {
 void actualizarSaldos(char *clientes, char *transacciones){
 	FILE *fp;
 	char aux;
-	int caux, caux2,caux3, i;
+	int caux, caux2,caux3;
 
 	fp = fopen(transacciones,"r");
 	if (fp == NULL){
@@ -28,7 +21,7 @@ void actualizarSaldos(char *clientes, char *transacciones){
 	}
 	while (!feof(fp)){
 		fscanf(fp,"%c", &aux);
-		if ( (aux == "+") || (aux == "−")){
+		if ( ( aux == '+') || ( aux == '-')){
 			fscanf(fp,"%d %d",&caux,&caux2);
 			printf("%d %d\n",caux,caux2);
 		}
@@ -40,11 +33,8 @@ void actualizarSaldos(char *clientes, char *transacciones){
 	}
 	return;
 }
-int main(){
 
-	char clie[] = "clientes.dat";
-	char tran[] = "trans.txt";
-
-	actualizarSaldos(clie,tran);
-	return (0);
+int main(int argd,char **argv){
+	actualizarSaldos (argv[1], argv[1]);
+	return 0;
 }
