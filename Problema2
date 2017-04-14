@@ -26,15 +26,17 @@ void actualizarSaldos(char *clientes, char *transacciones){
 		printf("No se pudo abrir el archivo\n");
 		exit(1);
 	}
-	i = fscanf(fp,"%c %d %d %d", &aux, &caux,&caux2,&caux3);
-	while(i != EOF){
-		if (i == 3){
-			printf("Hola\n");
+	while (!feof(fp)){
+		fscanf(fp,"%c", &aux);
+		if ( (aux == "+") || (aux == "−")){
+			fscanf(fp,"%d %d",&caux,&caux2);
+			printf("%d %d\n",caux,caux2);
 		}
-		else if(i == 4){
-			printf("Chao\n");
+		else {
+			fscanf(fp,"%d %d %d",&caux,&caux2,&caux3);
+			printf("%d %d %d\n",caux,caux2,caux3);
 		}
-		i = fscanf(fp,"%c %d %d %d", &aux, &caux,&caux2,&caux3);
+
 	}
 	return;
 }
