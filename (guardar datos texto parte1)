@@ -1,4 +1,77 @@
+int iguallargo(char *pal1,char *pal2){
+	if (strlen(pal1)==strlen(pal2))
+		return 1;
+	else	return 0;
+}
+int iguales(char *pal1,char *pal2){
 
+	if (iguallargo(pal1,pal2) ==1){
+		int n = strlen(pal1);
+		for (int i=0;i<n;i++){
+			if (pal1[i] != pal2[i])
+				return 0;
+
+		}
+		return 1;
+	}
+	else	return 0;
+}
+
+
+int anagramas(char **S,int n, char *str)
+{
+
+	int total = 0;
+	for (int i =0;i<n;i++){
+		if (iguales(S[i],str))
+			total +=1;
+
+	}
+	return total;
+}
+
+
+int main(){
+
+
+	char palabra[65];
+	strcpy(palabra,"Ñandú");
+	minuscula(palabra);
+	ordenarpalabra(palabra);
+	//printf("%s\n",palabra);
+	
+
+	char palabra1[65];
+	strcpy(palabra1,"amor");
+	char palabra2[65];
+	strcpy(palabra2,"roma");
+	char palabra3[65];
+	strcpy(palabra3,"fabian");
+	char palabra4[65];
+	strcpy(palabra4,"casa");
+
+
+	minuscula(palabra1);
+	ordenarpalabra(palabra1);
+	minuscula(palabra2);
+	ordenarpalabra(palabra2);
+	minuscula(palabra3);
+	ordenarpalabra(palabra3);
+	minuscula(palabra4);
+	ordenarpalabra(palabra4);
+
+	printf("amor = roma %d\n",iguales(palabra1,palabra2));
+	printf("amor = fabian %d\n",iguales(palabra1,palabra3));
+	printf("amor = casa %d\n",iguales(palabra1,palabra4));
+
+	//-----------	Ejecutando la funion anagrama para los elementos del archivo de texto
+	
+	char palabras[6][65]= {"amor","roma","casa","fabian","mora", "vela"};
+	printf("%d\n",anagramas(palabras,6,palabra1));
+	
+	
+	//----------
+	/*
 int main(){
 
 	char a[5] = "hola";
@@ -76,4 +149,4 @@ int main(){
 	
 
 	return 0;
- }
+ }*/
