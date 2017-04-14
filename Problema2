@@ -1,20 +1,28 @@
-/*****
-* TipoFunción NombreFunción
-******
-* Resumen Función
-******
-* Input:
-* tipoParámetro NombreParámetro : Descripción Parámetro
-* .......
-******
-* Returns:
-* TipoRetorno, Descripción retorno
-*****/
-
-
 /****
 * Cosas por hacer:
 * Funcion deposito y extracion
 * Funcion trasnferencia
 * Funcion actualizarSaldo
 ****/
+
+#include <stdio.h>
+#include <string.h>
+typedef struct {
+	int nroCuenta;
+	int saldo;
+	char nbre[51];
+	char direccion[51];	
+} clienteBanco;
+
+(void)actualizarSaldos(char *clientes, char *transacciones){
+	return;
+}
+
+int main(){
+
+	char clie[] = "clientes.dat";
+	char tran[] = "trans.txt";
+
+	actualizarSaldos(clie,tran);
+	return (0);
+}
