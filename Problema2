@@ -16,19 +16,27 @@ typedef struct {
 	char direccion[51];	
 } clienteBanco;
 
-(void)actualizarSaldos(char *clientes, char *transacciones){
-	FILE fp;
+void actualizarSaldos(char *clientes, char *transacciones){
+	FILE *fp;
+	char aux;
+	int caux, caux2,caux3;
 
-	fp = fopen(transacciones);
-	if (fp = NULL){
+	fp = fopen(transacciones,"r");
+	if (fp == NULL){
 		printf("No se pudo abrir el archivo\n");
 		exit(1);
 	}
-	while(! foef(fp)){
-
+	while(! feof(fp)){
+		if ((fscanf(fp,"%c %d %d", &aux, &caux,&caux2)) == 3){
+			printf("Hola\n");
+		}
+		else if((fscanf(fp,"%c %d %d %d", &aux, &caux,&caux2,&caux3)) == 4){
+			printf("Chao\n");
+		}
+		
 	}
 	return;
-}
+}}
 int main(){
 
 	char clie[] = "clientes.dat";
