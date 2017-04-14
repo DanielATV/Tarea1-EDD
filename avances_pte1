@@ -77,15 +77,14 @@ void ordenarpalabra(char *a){
   que hace: transforma a minuscula y ordena todas las palabras
   que estan en el arreglo
 */
-/
+
 void ordenarArregloS(char *A, int cant){
 	int i;
-	for(i = 0, i < n, i++){
-		minuscula(N[i]);
-		ordenarpalabra(N[i]);
+	for(i = 0; i < cant; i++){
+		minuscula(&A[i]);
+		ordenarpalabra(&A[i]);
 	}
 }
-
 
 int main(int argv, char **argc){
 	FILE *fp, *new;
@@ -109,9 +108,8 @@ int main(int argv, char **argc){
 
 	/*Ahora los guardo */
 	for(i = 0; i < n; i++ ){
-		fscanf(fp,"%s",aux);
-		strcpy(N[i],aux);
-		printf("%s\n",aux );
+		fscanf(fp,"%s",&N[i]);
+		printf("%s\n",&N[i] );
 	}
 
 	//ordenarArregloS(N,n);
@@ -120,4 +118,3 @@ int main(int argv, char **argc){
 	return 0;
 
 }
-
