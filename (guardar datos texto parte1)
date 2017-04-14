@@ -66,8 +66,8 @@ int main(){
 
 	//-----------	Ejecutando la funion anagrama para los elementos del archivo de texto
 	
-	char palabras[6][65]= {"amor","roma","casa","fabian","mora", "vela"};
-	printf("%d\n",anagramas(palabras,6,palabra1));
+	//char palabras[6][65]= {"amor","roma","casa","fabian","mora", "vela"};
+	//printf("%d\n",anagramas(palabras,6,palabra1));
 	
 	
 	//----------
