@@ -71,21 +71,52 @@ void ordenarpalabra(char *a){
 	}
 }
 
+int iguallargo(char *pal1,char *pal2){
+	if (strlen(pal1)==strlen(pal2))
+		return 1;
+	else	return 0;
+}
+int iguales(char *pal1,char *pal2){
+
+	if (iguallargo(pal1,pal2) ==1){
+		int n = strlen(pal1);
+		for (int i=0;i<n;i++){
+			if (pal1[i] != pal2[i])
+				return 0;
+
+		}
+		return 1;
+	}
+	else	return 0;
+}
+
+
+int anagramas(char **S,int n, char *str)
+{
+
+	int total = 0;
+	for (int i =0;i<n;i++){
+		if (iguales(S[i],str))
+			total +=1;
+
+	}
+	return total;
+}
+
 /* nombre funcion: ordenar arreglo de palabras
   recibe: un puntero a un arreglo
   devuelve: nada
   que hace: transforma a minuscula y ordena todas las palabras
   que estan en el arreglo
 */
-/
+
 void ordenarArregloS(char *A, int cant){
 	int i;
-	for(i = 0, i < n, i++){
-		minuscula(N[i]);
-		ordenarpalabra(N[i]);
+	for(i = 0; i < cant; i++){
+		minuscula(&A[i]);
+		ordenarpalabra(&A[i]);
 	}
 }
-
 
 int main(int argv, char **argc){
 	FILE *fp, *new;
@@ -109,14 +140,17 @@ int main(int argv, char **argc){
 
 	/*Ahora los guardo */
 	for(i = 0; i < n; i++ ){
-		fscanf(fp,"%s",aux);
-		strcpy(N[i],aux);
-		printf("%s\n",aux );
+		fscanf(fp,"%s",&N[i]);
+		printf("%s\n", &N[i]);
 	}
+	fclose(fp);
+
 
 	//ordenarArregloS(N,n);
+	for(i = 0; i < n; i++ ){
+		printf("%s\n",&N[i]);
+	}
 
-	fclose(fp);
 	return 0;
 
 }
