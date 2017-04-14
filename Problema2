@@ -19,21 +19,22 @@ typedef struct {
 void actualizarSaldos(char *clientes, char *transacciones){
 	FILE *fp;
 	char aux;
-	int caux, caux2,caux3;
+	int caux, caux2,caux3, i;
 
 	fp = fopen(transacciones,"r");
 	if (fp == NULL){
 		printf("No se pudo abrir el archivo\n");
 		exit(1);
 	}
-	while(! feof(fp)){
-		if ((fscanf(fp,"%c %d %d", &aux, &caux,&caux2)) == 3){
+	i = fscanf(fp,"%c %d %d %d", &aux, &caux,&caux2,&caux3);
+	while(i != 0){
+		if (i == 3){
 			printf("Hola\n");
 		}
-		else if((fscanf(fp,"%c %d %d %d", &aux, &caux,&caux2,&caux3)) == 4){
+		else if(i == 4){
 			printf("Chao\n");
 		}
-		
+		i = fscanf(fp,"%c %d %d %d", &aux, &caux,&caux2,&caux3);
 	}
 	return;
 }}
