@@ -27,7 +27,7 @@ void actualizarSaldos(char *clientes, char *transacciones){
 		exit(1);
 	}
 	i = fscanf(fp,"%c %d %d %d", &aux, &caux,&caux2,&caux3);
-	while(i != 0){
+	while(i != EOF){
 		if (i == 3){
 			printf("Hola\n");
 		}
@@ -37,7 +37,7 @@ void actualizarSaldos(char *clientes, char *transacciones){
 		i = fscanf(fp,"%c %d %d %d", &aux, &caux,&caux2,&caux3);
 	}
 	return;
-}}
+}
 int main(){
 
 	char clie[] = "clientes.dat";
