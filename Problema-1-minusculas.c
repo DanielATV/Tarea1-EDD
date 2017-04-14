@@ -52,11 +52,53 @@ void minuscula(char *a){
 	return;
 }
 
+void ordenarpalabra(char *a)
+{
+	
+	
+	int n= strlen(a);
+	//printf("%s\n",a);
+	//printf("%d\n",n);
+
+
+
+	//if ('a' < 'b')
+	//	printf("lo es\n");
+	
+
+	int i,j,aux;
+
+	for(i=0;i<=n-1;i++)
+	{
+		for(j=0;j<n-1-i;j++)
+		{
+			//printf("%d\n",(int)a[j]>(int)a[j+1]);
+			if(a[j]<a[j+1])
+			{
+				aux = a[j];
+				//printf("aux es %c\n",aux);
+				a[j] = a[j+1];
+				//printf("aj es %c\n",a[j]);
+				a[j+1] = aux;
+				//printf("aj+1 es %c\n",a[j+1]);
+				//printf("a0 es %c\n",a[0]);
+				//printf("la palabra es %s\n",a);	
+			}
+		}
+	}
+
+	//printf("%c\n",a[0]);
+	//printf("%s\n",a);
+	//return a;
+}
+
 /* Para ver que funcione correctamente*/
 int main(){
 	char palabra[65];
 	strcpy(palabra,"Ñandú");
 	minuscula(palabra);
+	
+	ordenarpalabra(palabra);
 	printf("%s\n",palabra);
 	return 0;
 }
