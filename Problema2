@@ -7,6 +7,8 @@
 
 #include <stdio.h>
 #include <string.h>
+#include <stdlib.h>
+
 typedef struct {
 	int nroCuenta;
 	int saldo;
@@ -15,9 +17,18 @@ typedef struct {
 } clienteBanco;
 
 (void)actualizarSaldos(char *clientes, char *transacciones){
+	FILE fp;
+
+	fp = fopen(transacciones);
+	if (fp = NULL){
+		printf("No se pudo abrir el archivo\n");
+		exit(1);
+	}
+	while(! foef(fp)){
+
+	}
 	return;
 }
-
 int main(){
 
 	char clie[] = "clientes.dat";
