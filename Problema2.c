@@ -12,24 +12,26 @@ typedef struct {
 void actualizarSaldos(char *clientes, char *transacciones){
 	FILE *fp;
 	char aux;
-	int caux, caux2,caux3;
-
+	int caux, caux2,caux3,i;
+	caux3 = 0;
+	
 	fp = fopen(transacciones,"r");
 	if (fp == NULL){
 		printf("No se pudo abrir el archivo\n");
 		exit(1);
 	}
+	
+	
 	while (!feof(fp)){
-		fscanf(fp,"%c", &aux);
-		if ( ( aux == '+') || ( aux == '-')){
-			fscanf(fp,"%d %d",&caux,&caux2);
-			printf("%d %d\n",caux,caux2);
-		}
-		else {
-			fscanf(fp,"%d %d %d",&caux,&caux2,&caux3);
-			printf("%d %d %d\n",caux,caux2,caux3);
-		}
+		i = fscanf(fp,"%c %d %d %d", &aux,&caux,&caux2,&caux3);
 
+		if( i == 3){
+			printf("%c %d %d\n", aux,caux,caux2);
+		}
+		else if( i == 4){
+			printf("%c %d %d %d\n", aux,caux,caux2,caux3);
+		}
+		
 	}
 	return;
 }
