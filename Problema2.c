@@ -11,7 +11,7 @@ typedef struct {
 
 void abonar(clienteBanco *clientes,int cuenta, int monto,int largo){
 	int i;
-	for(i = o; i<largo, i++){
+	for(i = 0; i<largo, i++){
 		if(cliente[i].nroCuenta == cuenta){
 			cliente[i].saldo += monto;
 		}
@@ -22,7 +22,7 @@ void abonar(clienteBanco *clientes,int cuenta, int monto,int largo){
 
 void restar(clienteBanco *clientes,int cuenta, int monto,int largo){
 	int i;
-	for(i = o; i<largo, i++){
+	for(i = 0; i<largo, i++){
 		if(cliente[i].nroCuenta == cuenta){
 			cliente[i].saldo -= monto;
 		}
