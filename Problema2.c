@@ -31,11 +31,17 @@ void actualizarSaldos(char *clientes, char *transacciones){
 
 	fread(&temp,sizeof(clienteBanco),1,fp);
 
+	
 	while(!feof(fp)){
 		i++;
-		fread(&temp,sizeof(clienteBanco),1,fp);
+
+		temp = (clienteBanco *)realloc(fp,sizeof(clienteBanco)*i);
+		if (temp = NULL){
+			printf("No se pudo asignar memoria\n");
+		}
+		cont++;
+		fread(&temp[cont],sizeof(clienteBanco),1,fp);
 	}
-	
 
 	fclose(fp);
 	fp = fopen(transacciones,"r");
