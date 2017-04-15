@@ -35,16 +35,15 @@ void actualizarSaldos(char *clientes, char *transacciones){
 		i++;
 		
 		temp = (clienteBanco *)realloc(temp,i*sizeof(clienteBanco));
-		if (temp = NULL){
+		if (temp == NULL){
 			printf("No se pudo asignar memoria\n");
 		}
 		cont++;
 		fread(&temp[cont],sizeof(clienteBanco),1,fp);
 		
 	}
-	
-
 	fclose(fp);
+
 	fp = fopen(transacciones,"r");
 	if (fp == NULL){
 		printf("No se pudo abrir el archivo\n");
@@ -71,7 +70,6 @@ void actualizarSaldos(char *clientes, char *transacciones){
 	return;
 	
 }
-
 int main(int argd,char **argv){
 	actualizarSaldos (argv[1], argv[1]);
 	return 0;
