@@ -56,11 +56,12 @@ void transferencia(clienteBanco *clientes,int cuenta,int cuenta2, int monto,int 
 	if (flag2 == 1) printf("No existe el usuario %d\n",cuenta2);		
 	return;
 }
+
 void actualizarSaldos(char *clientes, char *transacciones){
 	FILE *fp;
 	char aux;
 	int caux, caux2,caux3,i,j,cont;
-	i = 1;
+	i = 0;
 	cont = 0;
 	clienteBanco *temp;
 	
@@ -81,7 +82,7 @@ void actualizarSaldos(char *clientes, char *transacciones){
 	while(!feof(fp)){
 		i++;
 		
-		temp = (clienteBanco *)realloc(temp,i*sizeof(clienteBanco));
+		temp = (clienteBanco *)realloc(temp,(i+1)*sizeof(clienteBanco));
 		if (temp == NULL){
 			printf("No se pudo asignar memoria\n");
 		}
@@ -89,6 +90,7 @@ void actualizarSaldos(char *clientes, char *transacciones){
 		fread(&temp[cont],sizeof(clienteBanco),1,fp);
 		
 	}
+	
 	fclose(fp);
 
 	fp = fopen(transacciones,"r");
