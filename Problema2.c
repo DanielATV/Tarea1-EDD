@@ -31,6 +31,24 @@ void restar(clienteBanco *clientes,int cuenta, int monto,int largo){
 	return;
 }
 
+void transferencia(clienteBanco *clientes,int cuenta,int cuenta2, int monto,int largo){
+	int i,flag,flag2;
+	flag = 1;
+	flag2 = 1;
+	for(i=0; i < largo; i++){
+		if ( flag == 1 && clientes[i].nroCuenta == cuenta){
+			clientes[i].saldo -= monto;
+			flag = 0;
+		}
+		else if (flag2 == 1 && clientes[i].nroCuenta == cuenta2){
+			clientes[i].saldo += monto;
+			flag2 = 0;
+		}
+		else if( flag != 1 && flag2 != 1) break;
+	}
+	return;
+}
+
 void actualizarSaldos(char *clientes, char *transacciones){
 	FILE *fp;
 	char aux;
