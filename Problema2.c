@@ -9,10 +9,21 @@ typedef struct {
 	char direccion[51];	
 } clienteBanco;
 
+void abonar(clienteBanco *clientes,int cuenta, int monto,int largo){
+	int i;
+	for(i = o; i<largo, i++){
+		if(cliente[i].nroCuenta == cuenta){
+			cliente[i].saldo += monto;
+		}
+		else printf("No existe el usuario %d\n",cuenta);
+	}
+
+}
+
 void actualizarSaldos(char *clientes, char *transacciones){
 	FILE *fp;
 	char aux;
-	int caux, caux2,caux3,i,cont;
+	int caux, caux2,caux3,i,j,cont;
 	i = 1;
 	cont = 0;
 	clienteBanco *temp;
@@ -52,15 +63,15 @@ void actualizarSaldos(char *clientes, char *transacciones){
 	
 	
 	while (!feof(fp)){
-		i = fscanf(fp,"%c %d %d %d", &aux,&caux,&caux2,&caux3);
+		j = fscanf(fp,"%c %d %d %d", &aux,&caux,&caux2,&caux3);
 
-		if( i == 3){
+		if( j == 3){
 			printf("%c %d %d\n", aux,caux,caux2);
 		}
-		else if( i == 4){
+		else if( j == 4){
 			printf("%c %d %d %d\n", aux,caux,caux2,caux3);
 		}
-		else if( i == 0){
+		else if( j == 0){
 			printf("No se pudo leer linea\n");
 			exit(1);
 		}
