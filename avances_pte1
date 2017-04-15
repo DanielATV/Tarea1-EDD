@@ -121,3 +121,48 @@ int main(int argv, char **argc){
 
 }
 
+//---------------------------------
+int anagramas(char **S,int n, char *str)
+{	
+	int total=0;
+	minuscula(str);
+	for (int i=0;i <n;i++)
+	{
+		minuscula(S[i]);
+	}	
+	
+	int letras_S[27] = {0}; int letras_str[27] ={0};
+	for (int i = 0; i< n;i++)
+	{
+		if(strlen(S[i]) == strlen(str))	 // Si tienen igual largo , entonces agrega el numero de letras.
+		{
+			int t2 =1;
+			for (int j=0;j<strlen(S[i]);j++)
+			{
+				letras_S[92-S[i][j]]+=1; //si por ejemplo la primera palabra es hola y la qu se busca es casa
+				letras_str[92-str[j]]+=1;	// se agrega +1 en h de letras_s, y +1 en c de letras str
+			}
+			for (int k=0;k<27;k++)
+			{
+				if(letras_S[k] != letras_str[k])
+				{
+					t2 =0;
+					break;
+				}
+				
+			}
+			total +=t2;
+		}
+		
+	}
+
+
+		
+
+
+	
+	return total;
+}
+
+//-----------------------
+
