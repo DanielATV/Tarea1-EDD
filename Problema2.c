@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
-
 typedef struct {
 	int nroCuenta;
 	int saldo;
@@ -106,7 +105,15 @@ void actualizarSaldos(char *clientes, char *transacciones){
 			exit(1);
 		}
 		
-	}	fclose(fp);
+	}
+	fclose(fp);
+	fp = fopen(clientes,"w");
+
+	for(j = 0; j<i;j++){
+		fwrite(&temp[j],sizeof(clienteBanco),1,fp);
+	}
+	fclose(fp);
+	free(temp);
 	return;
 	
 }
