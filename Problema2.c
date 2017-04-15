@@ -12,9 +12,32 @@ typedef struct {
 void actualizarSaldos(char *clientes, char *transacciones){
 	FILE *fp;
 	char aux;
-	int caux, caux2,caux3,i;
-	caux3 = 0;
+	int caux, caux2,caux3,i,cont;
+	i = 1;
+	cont = o;
+	clienteBanco *temp;
 	
+	fp = fopen(clientes,"r");
+	if (fp == NULL){
+		printf("No se pudo abrir el archivo\n");
+		exit(1);
+	}
+	temp = (clienteBanco *)malloc(sizeof(clienteBanco));
+
+	if (temp == NULL){
+		printf("No se pudo asignar memoria\n");
+		exit(1);
+	}
+
+	fread(&temp,sizeof(clienteBanco),1,fp);
+
+	while(!feof(fp)){
+		i++;
+		fread(&temp,sizeof(clienteBanco),1,fp);
+	}
+	
+
+	fclose(fp);
 	fp = fopen(transacciones,"r");
 	if (fp == NULL){
 		printf("No se pudo abrir el archivo\n");
@@ -35,12 +58,12 @@ void actualizarSaldos(char *clientes, char *transacciones){
 			printf("No se pudo leer linea\n");
 			exit(1);
 		}
-	
+		
 	}
 	fclose(fp);
-	return;	
+	return;
+	
 }
-
 int main(int argd,char **argv){
 	actualizarSaldos (argv[1], argv[1]);
 	return 0;
