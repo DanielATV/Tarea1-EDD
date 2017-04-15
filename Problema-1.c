@@ -115,8 +115,8 @@ int anagramas(char **S,int n, char *str)
 void ordenarArregloS(char **A, int cant){
 	int i;
 	for(i = 0; i < cant; i++){
-		minuscula(&A[i]);
-		ordenarpalabra(&A[i]);
+		minuscula(A[i]);
+		ordenarpalabra(A[i]);
 	}
 }
 
@@ -154,13 +154,14 @@ int main(int argv, char **argc){
 	}
 	fclose(fp);
 
+	/*aplicamos los cambios al arreglo */
+	ordenarArregloS(N,n);
 
-	//ordenarArregloS(N,n);
 	for(i = 0; i < n; i++ ){
+		printf("%d\n",i );
 		printf("%s\n",N[i]);
 	}
-
+	free(N);
 	return 0;
 
 }
-
