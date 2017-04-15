@@ -17,16 +17,16 @@ int buscar(clienteBanco *clientes,int cuenta,int largo){
 	while(liminf <= limsup){
 
 		medio = liminf + ( limsup - liminf) / 2;
-		if (cliente[medio].nroCuenta == cuenta){
+		if (clientes[medio].nroCuenta == cuenta){
 			index = medio;
 			break;
 		}
 		else{
-			if(cliente[medio].nroCuenta < cuenta){
+			if(clientes[medio].nroCuenta < cuenta){
 				liminf = medio + 1;
 			}
 			else{
-				limup = medio -1;
+				limsup = medio -1;
 			}
 		}
 	}
@@ -35,31 +35,18 @@ int buscar(clienteBanco *clientes,int cuenta,int largo){
 }
 
 void abonar(clienteBanco *clientes,int cuenta, int monto,int largo){
-	int i,flag;
-	flag = 1;
-
-	for(i = 0; i<largo; i++){
-		if(flag ==1 && clientes[i].nroCuenta == cuenta){
-			clientes[i].saldo += monto;
-			flag = 0;
-		}
-		else if (flag == 0)break;
-	}
-	if (flag == 1) printf("No existe el usuario %d\n",cuenta);
+	int i;
+	i = buscar(clientes,cuenta,largo);
+	if(i == -1) printf("No se enconto la cuenta %d\n",cuenta);
+	clientes[i].saldo += monto;
 	return;
 }
 
 void restar(clienteBanco *clientes,int cuenta, int monto,int largo){
-	int i,flag;
-	flag = 1;
-	for(i = 0; i<largo; i++){
-		if(flag ==1 && clientes[i].nroCuenta == cuenta){
-			clientes[i].saldo -= monto;
-			flag = 0;			
-		}
-		else if (flag == 0)break;
-	}
-	if (flag == 1) printf("No existe el usuario %d\n",cuenta);	
+	int i;
+	i = buscar(clientes,cuenta,largo);
+	if(i == -1) printf("No se enconto la cuenta %d\n",cuenta);
+	clientes[i].saldo -= monto;
 	return;
 }
 
