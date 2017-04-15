@@ -8,7 +8,7 @@ typedef struct {
 	char nbre[51];
 	char direccion[51];	
 } clienteBanco;
--
+
 void actualizarSaldos(char *clientes, char *transacciones){
 	FILE *fp;
 	char aux;
@@ -31,9 +31,13 @@ void actualizarSaldos(char *clientes, char *transacciones){
 		else if( i == 4){
 			printf("%c %d %d %d\n", aux,caux,caux2,caux3);
 		}
+		else if( i == 0){
+			printf("No se pudo leer linea\n");
+			exit(1);
+		}
 		
 	}
-	return;
+	return;	
 }
 
 int main(int argd,char **argv){
