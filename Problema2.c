@@ -20,6 +20,17 @@ void abonar(clienteBanco *clientes,int cuenta, int monto,int largo){
 	return;
 }
 
+void restar(clienteBanco *clientes,int cuenta, int monto,int largo){
+	int i;
+	for(i = o; i<largo, i++){
+		if(cliente[i].nroCuenta == cuenta){
+			cliente[i].saldo -= monto;
+		}
+		else printf("No existe el usuario %d\n",cuenta);
+	}
+	return;
+}
+
 void actualizarSaldos(char *clientes, char *transacciones){
 	FILE *fp;
 	char aux;
