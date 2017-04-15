@@ -155,7 +155,6 @@ int main(int argv, char **argc){
 
 	/* aplicamos los cambios al arreglo */
 	ordenarArregloS(N,n);
-
 	/*Ahora mientras vemos cada linea, vemos si es anagrama*/
 	if(fscanf(fp,"%d",&m) == 0){
 		printf("Error al leer la linea\n");
@@ -170,12 +169,16 @@ int main(int argv, char **argc){
 	}
 	for(i = 0; i < m; i++){
 		fscanf(fp,"%s",aux);
+		minuscula(aux);
+		ordenarpalabra(aux);
 		fprintf(new, "%d\n",anagramas(N,n,aux)); 
 	}
 
 	fclose(fp);
 	fclose(new);
+	for(i = 0; i<n;i++) free(N[i]);
 	free(N);
+	printf("Listo!\n");
 	return 0;
 
 }
