@@ -35,8 +35,9 @@ void actualizarSaldos(char *clientes, char *transacciones){
 			printf("No se pudo leer linea\n");
 			exit(1);
 		}
-		
+	
 	}
+	fclose(fp);
 	return;	
 }
 
