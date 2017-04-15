@@ -51,22 +51,8 @@ void restar(clienteBanco *clientes,int cuenta, int monto,int largo){
 }
 
 void transferencia(clienteBanco *clientes,int cuenta,int cuenta2, int monto,int largo){
-	int i,flag,flag2;
-	flag = 1;
-	flag2 = 1;
-	for(i=0; i < largo; i++){
-		if ( flag == 1 && clientes[i].nroCuenta == cuenta){
-			clientes[i].saldo -= monto;
-			flag = 0;
-		}
-		else if (flag2 == 1 && clientes[i].nroCuenta == cuenta2){
-			clientes[i].saldo += monto;
-			flag2 = 0;
-		}
-		else if( flag != 1 && flag2 != 1) break;
-	}
-	if (flag == 1) printf("No existe el usuario %d\n",cuenta);
-	if (flag2 == 1) printf("No existe el usuario %d\n",cuenta2);		
+	restar(clientes,cuenta,monto,largo);
+	abonar(clientes,cuenta2,monto,largo);		
 	return;
 }
 
@@ -140,6 +126,9 @@ void actualizarSaldos(char *clientes, char *transacciones){
 	return;
 	
 }
+
+
+
 int main(int argc,char **argv){
 
 
