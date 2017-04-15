@@ -46,6 +46,7 @@ void minuscula(char *a){
 			aux[j++] = a[i];
 		}
 	}
+	aux[j] = '\0';
 	strcpy(a,aux);
 	free(aux);
 }
@@ -126,7 +127,7 @@ void ordenarArregloS(char **A, int cant){
 int main(int argv, char **argc){
 	FILE *fp, *new;
 	int n, m, i;
-	char **N;
+	char **N, aux[200];
 
 	/* Abre el archivo, si hay error termina
 	el proceso*/
@@ -150,17 +151,30 @@ int main(int argv, char **argc){
 	/*Ahora los guardo */
 	for(i = 0; i < n; i++ ){
 		fscanf(fp,"%s",N[i]);
-		printf("%s\n", N[i]);
 	}
-	fclose(fp);
 
-	/*aplicamos los cambios al arreglo */
+	/* aplicamos los cambios al arreglo */
 	ordenarArregloS(N,n);
 
-	for(i = 0; i < n; i++ ){
-		printf("%d\n",i );
-		printf("%s\n",N[i]);
+	/*Ahora mientras vemos cada linea, vemos si es anagrama*/
+	if(fscanf(fp,"%d",&m) == 0){
+		printf("Error al leer la linea\n");
+		exit(1);
 	}
+
+	/* creo el archivo resultante */
+	new = fopen("salida-1.txt","w+");
+	if(new == NULL){
+		printf("Error al crear el archivo\n");
+		exit(1);
+	}
+	for(i = 0; i < m; i++){
+		fscanf(fp,"%s",aux);
+		fprintf(new, "%d\n",anagramas(N,n,aux)); 
+	}
+
+	fclose(fp);
+	fclose(new);
 	free(N);
 	return 0;
 
