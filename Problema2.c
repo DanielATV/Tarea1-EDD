@@ -14,7 +14,7 @@ void actualizarSaldos(char *clientes, char *transacciones){
 	char aux;
 	int caux, caux2,caux3,i,cont;
 	i = 1;
-	cont = o;
+	cont = 0;
 	clienteBanco *temp;
 	
 	fp = fopen(clientes,"r");
@@ -28,20 +28,21 @@ void actualizarSaldos(char *clientes, char *transacciones){
 		printf("No se pudo asignar memoria\n");
 		exit(1);
 	}
-
-	fread(&temp,sizeof(clienteBanco),1,fp);
-
+	
+	fread(temp,sizeof(clienteBanco),1,fp);
 	
 	while(!feof(fp)){
 		i++;
-
-		temp = (clienteBanco *)realloc(fp,sizeof(clienteBanco)*i);
+		
+		temp = (clienteBanco *)realloc(temp,i*sizeof(clienteBanco));
 		if (temp = NULL){
 			printf("No se pudo asignar memoria\n");
 		}
 		cont++;
 		fread(&temp[cont],sizeof(clienteBanco),1,fp);
+		
 	}
+	
 
 	fclose(fp);
 	fp = fopen(transacciones,"r");
@@ -70,6 +71,7 @@ void actualizarSaldos(char *clientes, char *transacciones){
 	return;
 	
 }
+
 int main(int argd,char **argv){
 	actualizarSaldos (argv[1], argv[1]);
 	return 0;
