@@ -11,9 +11,9 @@ typedef struct {
 
 void abonar(clienteBanco *clientes,int cuenta, int monto,int largo){
 	int i;
-	for(i = 0; i<largo, i++){
-		if(cliente[i].nroCuenta == cuenta){
-			cliente[i].saldo += monto;
+	for(i = 0; i<largo; i++){
+		if(clientes[i].nroCuenta == cuenta){
+			clientes[i].saldo += monto;
 		}
 		else printf("No existe el usuario %d\n",cuenta);
 	}
@@ -22,9 +22,9 @@ void abonar(clienteBanco *clientes,int cuenta, int monto,int largo){
 
 void restar(clienteBanco *clientes,int cuenta, int monto,int largo){
 	int i;
-	for(i = 0; i<largo, i++){
-		if(cliente[i].nroCuenta == cuenta){
-			cliente[i].saldo -= monto;
+	for(i = 0; i<largo; i++){
+		if(clientes[i].nroCuenta == cuenta){
+			clientes[i].saldo -= monto;
 		}
 		else printf("No existe el usuario %d\n",cuenta);
 	}
