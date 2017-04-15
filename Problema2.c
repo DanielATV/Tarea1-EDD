@@ -9,24 +9,31 @@ typedef struct {
 } clienteBanco;
 
 void abonar(clienteBanco *clientes,int cuenta, int monto,int largo){
-	int i;
+	int i,flag;
+	flag = 1;
+
 	for(i = 0; i<largo; i++){
-		if(clientes[i].nroCuenta == cuenta){
+		if(flag ==1 && clientes[i].nroCuenta == cuenta){
 			clientes[i].saldo += monto;
+			flag = 0;
 		}
-		else printf("No existe el usuario %d\n",cuenta);
+		else if (flag == 0)break;
 	}
+	if (flag == 1) printf("No existe el usuario %d\n",cuenta);
 	return;
 }
 
 void restar(clienteBanco *clientes,int cuenta, int monto,int largo){
-	int i;
+	int i,flag;
+	flag = 1;
 	for(i = 0; i<largo; i++){
-		if(clientes[i].nroCuenta == cuenta){
+		if(flag ==1 && clientes[i].nroCuenta == cuenta){
 			clientes[i].saldo -= monto;
+			flag = 0;			
 		}
-		else printf("No existe el usuario %d\n",cuenta);
+		else if (flag == 0)break;
 	}
+	if (flag == 1) printf("No existe el usuario %d\n",cuenta);	
 	return;
 }
 
@@ -45,9 +52,10 @@ void transferencia(clienteBanco *clientes,int cuenta,int cuenta2, int monto,int 
 		}
 		else if( flag != 1 && flag2 != 1) break;
 	}
+	if (flag == 1) printf("No existe el usuario %d\n",cuenta);
+	if (flag2 == 1) printf("No existe el usuario %d\n",cuenta2);		
 	return;
 }
-
 void actualizarSaldos(char *clientes, char *transacciones){
 	FILE *fp;
 	char aux;
