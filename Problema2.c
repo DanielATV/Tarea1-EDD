@@ -17,7 +17,7 @@ void abonar(clienteBanco *clientes,int cuenta, int monto,int largo){
 		}
 		else printf("No existe el usuario %d\n",cuenta);
 	}
-
+	return;
 }
 
 void actualizarSaldos(char *clientes, char *transacciones){
