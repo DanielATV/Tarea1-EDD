@@ -95,18 +95,18 @@ void actualizarSaldos(char *clientes, char *transacciones){
 		j = fscanf(fp,"%c %d %d %d", &aux,&caux,&caux2,&caux3);
 
 		if( j == 3){
-			printf("%c %d %d\n", aux,caux,caux2);
+			if( aux == '+') abonar(temp,caux,caux2,i);
+			else restar(temp,caux,caux2,i);
 		}
 		else if( j == 4){
-			printf("%c %d %d %d\n", aux,caux,caux2,caux3);
+			transferencia(temp,caux,caux2,caux3,i);
 		}
 		else if( j == 0){
 			printf("No se pudo leer linea\n");
 			exit(1);
 		}
 		
-	}
-	fclose(fp);
+	}	fclose(fp);
 	return;
 	
 }
