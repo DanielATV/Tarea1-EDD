@@ -8,7 +8,7 @@ typedef struct {
 	char nbre[51];
 	char direccion[51];	
 } clienteBanco;
-
+-
 void actualizarSaldos(char *clientes, char *transacciones){
 	FILE *fp;
 	char aux;
