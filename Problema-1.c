@@ -74,6 +74,12 @@ void ordenarpalabra(char *a){
 
 /* Las siguientes 3 funciones son para anagrama */
 
+int iguales(char *pal1,char *pal2){
+	int i;
+	for(i = 0; pal1[i] != '\0' || pal2[i] != '\0'; i++) if (pal1[i] != pal2[i]) break;
+	return (pal1[i] == pal2[i])
+}
+
 int iguallargo(char *pal1,char *pal2){
 	if (strlen(pal1)==strlen(pal2))
 		return 1;
