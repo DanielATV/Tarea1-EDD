@@ -8,6 +8,32 @@ typedef struct {
 	char direccion[51];	
 } clienteBanco;
 
+int buscar(clienteBanco *clientes,int cuenta,int largo){
+	int index;
+	int medio,limsup,liminf;
+	index = -1;
+	liminf = 0;
+	limsup = largo - 1;
+	while(liminf <= limsup){
+
+		medio = liminf + ( limsup - liminf) / 2;
+		if (cliente[medio].nroCuenta == cuenta){
+			index = medio;
+			break;
+		}
+		else{
+			if(cliente[medio].nroCuenta < cuenta){
+				liminf = medio + 1;
+			}
+			else{
+				limup = medio -1;
+			}
+		}
+	}
+	return index;
+
+}
+
 void abonar(clienteBanco *clientes,int cuenta, int monto,int largo){
 	int i,flag;
 	flag = 1;
