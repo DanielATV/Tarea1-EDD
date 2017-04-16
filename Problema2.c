@@ -99,21 +99,22 @@ void actualizarSaldos(char *clientes, char *transacciones){
 	}
 	
 	
-	while (!feof(fp)){
-		j = fscanf(fp,"%c %d %d %d", &aux,&caux,&caux2,&caux3);
+	while (fgets(aux,sizeof(aux),fp)){
+		i = sscanf(aux,"%c %d %d %d", &aux2,&caux,&caux2,&caux3);
 
-		if( j == 3){
-			if( aux == '+') abonar(temp,caux,caux2,i);
-			else restar(temp,caux,caux2,i);
+		if( i == 3){
+			if( aux2 == '+')abonar(temp,caux,caux2,i);
+			else restar(temp,caux,caux2,i); 
+			printf("%c %d %d\n",aux2 ,caux,caux2);
 		}
-		else if( j == 4){
-			transferencia(temp,caux,caux2,caux3,i);
+		else if( i == 4){
+			if( aux2 == '>') transferencia(temp,caux,caux2,caux3,i);
+			printf("%c %d %d %d\n", aux2,caux,caux2,caux3);
 		}
-		else if( j == 0){
+		else if( i == 0){
 			printf("No se pudo leer linea\n");
 			exit(1);
 		}
-		
 	}
 	fclose(fp);
 	fp = fopen(clientes,"w");
