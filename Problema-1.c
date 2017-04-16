@@ -172,9 +172,7 @@ int main(int argv, char **argc){
 
 	fclose(fp);
 	fclose(new);
-	
-	for(i = 0;i<n;i++) free((void *)N[i]);
-	
+		
 	printf("Listo!\n");
 
 	return 0;
