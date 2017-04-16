@@ -1,0 +1,62 @@
+
+char *convertir_int_palabra_ordenada(int *letras){
+	//printf("asdasdas\n");
+	int totletras=0;
+	for (int i=0;i<26;i++){
+		totletras += letras[i];
+		
+	}	
+	char *palabra = (char *)malloc(sizeof(char)*totletras);
+	int j=0;
+	while (j < totletras){
+		printf("%d\n",j);
+	for (int i =0; i<26;i++)
+	{	
+		if (letras[i] !=0)
+			for(int l =0;l<letras[i];l++)
+			{
+			palabra[j] = i+65;
+			j+=1; 
+			
+			}
+
+	}
+	}
+	
+	return palabra;
+}
+
+int *convertir_palabra_desordenada_int(char *palabra){
+	int largopal = strlen(palabra);
+	int *final;
+	final = (int *)malloc(sizeof(int)*26);
+
+	for (int i=0;i<26;i++){
+		final[i] = 0;
+	}
+
+	for(int i=0;i<largopal;i++){
+		//printf("%d\n",(int)palabra[i]-97);
+		final[(int)palabra[i]-97] +=1;
+	}
+
+	return final;
+
+}
+
+
+int main(){
+	
+	
+	//int letras[] = {1,2,3,0,0,1,4,3,2,1,1,0,0,0,0,1,0,0,0,0,0,0,0,1,0,1};
+	//char *palabra = convertir_int_palabra_ordenada(letras);
+
+	//printf("%s\n",palabra);
+	
+	char palabra[] = "abecedarioxz";
+	int *asd;
+	asd = convertir_palabra_desordenada_int(palabra);
+	for (int i=0;i<26;i++)	printf("%d\n",asd[i]);
+	
+	return 0;
+}
