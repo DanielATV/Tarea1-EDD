@@ -156,6 +156,7 @@ void actualizarSaldos(char *clientes, char *transacciones){
 	
 	fread(temp,sizeof(clienteBanco),1,fp);
 	
+	/* Lee las estructuras del archivo y las guarda en un arreglo */
 	while(!feof(fp)){
 		i++;
 		
@@ -175,7 +176,7 @@ void actualizarSaldos(char *clientes, char *transacciones){
 		printf("No se pudo abrir el archivo\n");
 		exit(1);
 	}
-	
+	/* Ejecuta todas las operaciones del archivo transacciones en el arreglo de estructuras */
 	while (fgets(aux,sizeof(aux),fp)){
 		j = sscanf(aux,"%c %d %d %d", &aux2,&caux,&caux2,&caux3);
 
@@ -196,6 +197,7 @@ void actualizarSaldos(char *clientes, char *transacciones){
 
 
 	fclose(fp);
+	/* Actualiza el archivo clientes con las estructuras del arreglo */
 	fp = fopen(clientes,"w");
 
 	for(j = 0; j<i;j++){
@@ -208,7 +210,7 @@ void actualizarSaldos(char *clientes, char *transacciones){
 	
 }
 
-
+/* Se ejecuta la funcion por medio de la consola de la forma ./nombrePrograma nombreArchivoClientes.dat nombreArchivoTransacciones.txt*/
 
 int main(int argc,char **argv){
 
