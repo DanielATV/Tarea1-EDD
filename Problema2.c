@@ -56,7 +56,7 @@ int buscar(clienteBanco *clientes,int cuenta,int largo){
 * Input:
 * clienteBanco *clientes : Puntero al arreglo de estructras de los clientes.
 * int cuenta : Cuenta que hay que buscar en el arreglo.
-*int monto: Monto que hay que sumar al saldo.
+*int monto: Monto que hay que sumarle al saldo.
 ** int largo : Largo del arreglo.
 ******
 * Returns:
@@ -70,6 +70,21 @@ void abonar(clienteBanco *clientes,int cuenta, int monto,int largo){
 	clientes[i].saldo += monto;
 	return;
 }
+
+/*****
+* void restar
+******
+* Utiliza la funcion buscar para encontrar la cuenta en el arreglo de estructuras para luego restarle el monto indicado a su saldo.
+******
+* Input:
+* clienteBanco *clientes : Puntero al arreglo de estructras de los clientes.
+* int cuenta : Cuenta que hay que buscar en el arreglo.
+*int monto: Monto que hay que restarle al saldo.
+** int largo : Largo del arreglo.
+******
+* Returns:
+* void, actualiza el saldo en la estructura del arreglo.
+*****/
 
 void restar(clienteBanco *clientes,int cuenta, int monto,int largo){
 	int i;
