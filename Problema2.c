@@ -16,7 +16,7 @@ typedef struct {
 * Input:
 * clienteBanco *clientes : Puntero al arreglo de estructras de los clientes.
 * int cuenta : Cuenta que hay que buscar en el arreglo.
-** int largo : Largo del arreglo.
+* int largo : Largo del arreglo.
 ******
 * Returns:
 * int, retorna un valor entero del indice de la estructura en el arreglo, en el caso de no encontarlo retorna -1.
@@ -56,11 +56,11 @@ int buscar(clienteBanco *clientes,int cuenta,int largo){
 * Input:
 * clienteBanco *clientes : Puntero al arreglo de estructras de los clientes.
 * int cuenta : Cuenta que hay que buscar en el arreglo.
-*int monto: Monto que hay que sumarle al saldo.
-** int largo : Largo del arreglo.
+* int monto: Monto que hay que sumarle al saldo.
+* int largo : Largo del arreglo.
 ******
 * Returns:
-* void, actualiza el saldo en la estructura del arreglo.
+* void, actualiza el saldo de la estructura del arreglo.
 *****/
 
 void abonar(clienteBanco *clientes,int cuenta, int monto,int largo){
@@ -79,11 +79,11 @@ void abonar(clienteBanco *clientes,int cuenta, int monto,int largo){
 * Input:
 * clienteBanco *clientes : Puntero al arreglo de estructras de los clientes.
 * int cuenta : Cuenta que hay que buscar en el arreglo.
-*int monto: Monto que hay que restarle al saldo.
-** int largo : Largo del arreglo.
+* int monto: Monto que hay que restarle al saldo.
+* int largo : Largo del arreglo.
 ******
 * Returns:
-* void, actualiza el saldo en la estructura del arreglo.
+* void, actualiza el saldo de la estructura del arreglo.
 *****/
 
 void restar(clienteBanco *clientes,int cuenta, int monto,int largo){
@@ -103,11 +103,11 @@ void restar(clienteBanco *clientes,int cuenta, int monto,int largo){
 * clienteBanco *clientes : Puntero al arreglo de estructras de los clientes.
 * int cuenta : Cuenta que se le resta el monto.
 * int cuenta2 : Cuenta que se le suma el monto.
-*int monto: Monto que hay que restarle al saldo.
-** int largo : Largo del arreglo.
+* int monto: Monto que hay que restarle al saldo.
+* int largo : Largo del arreglo.
 ******
 * Returns:
-* void, actualiza los saldos en las estructuras del arreglo.
+* void, actualiza los saldos de las estructuras del arreglo.
 *****/
 
 void transferencia(clienteBanco *clientes,int cuenta,int cuenta2, int monto,int largo){
@@ -115,6 +115,23 @@ void transferencia(clienteBanco *clientes,int cuenta,int cuenta2, int monto,int 
 	abonar(clientes,cuenta2,monto,largo);		
 	return;
 }
+
+/*****
+* void actualizarSaldos
+******
+* Primero lee todas las estructuras del archivo binario y las guarda en un arreglo que crece de manera dinamica,luego a medida que
+* lee las operaciones del archivo transacciones las efectua sobre las estructuras del arreglo. Finalmente abre el archivo de clientes en
+* w y escribe todas las estructuras del arreglo.
+******
+* Input:
+* char *clientes: String que representa el nombre de un archivo binario, el cual contiene una cantidad arbitraria
+* de structs de tipo clienteBanco. El archivo está ordenado de forma creciente por nroCuenta.
+* char *transacciones: String que representa el nombre de un archivo con formato ASCII, el cual contiene transacciones
+* hechas por los clientes. Cada transacción corresponde a una línea del archivo.
+******
+* Returns:
+* void, actualiza el archivo de clientes al efectuarle todas las operaciones del archivo transacciones.
+*****/
 
 void actualizarSaldos(char *clientes, char *transacciones){
 	FILE *fp;
