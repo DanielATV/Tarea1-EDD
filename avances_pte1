@@ -165,4 +165,43 @@ int anagramas(char **S,int n, char *str)
 }
 
 //-----------------------
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 
+
+
+char *asd(int *palabra){
+
+	int totletras=0;
+	for (int i=0;i<26;i++){
+		totletras += palabra[i];
+	}	
+	
+
+//tengo total letras
+
+	char *palabra2 = (char *)malloc(sizeof(char)*totletras);
+	for (int i=0;i<26;i++){
+		if(palabra[i] != 0)
+		{
+			for (int z=0;z<palabra[i];z++)	palabra2[i+z] = i+65;
+
+		}
+	}	
+
+	return palabra2;
+}
+
+
+int main(){
+	
+	
+	int palabra[] = {1,2,3,0,0,1,4,3,2,1,1,0,0,0,0,1,0,0,0,0,0,0,0,0,0,1,0};
+	char *palabra2 = asd(palabra);
+		
+	printf ("%s\n",palabra2);
+	return 0;
+}
+
+//-----
