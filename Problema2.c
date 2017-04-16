@@ -94,6 +94,22 @@ void restar(clienteBanco *clientes,int cuenta, int monto,int largo){
 	return;
 }
 
+/*****
+* void transferencia
+******
+* Le resta un monto a una cuenta del arreglo de estructuras y le suma el mismo monto a otra cuenta del arreglo de estructuras.
+******
+* Input:
+* clienteBanco *clientes : Puntero al arreglo de estructras de los clientes.
+* int cuenta : Cuenta que se le resta el monto.
+* int cuenta2 : Cuenta que se le suma el monto.
+*int monto: Monto que hay que restarle al saldo.
+** int largo : Largo del arreglo.
+******
+* Returns:
+* void, actualiza los saldos en las estructuras del arreglo.
+*****/
+
 void transferencia(clienteBanco *clientes,int cuenta,int cuenta2, int monto,int largo){
 	restar(clientes,cuenta,monto,largo);
 	abonar(clientes,cuenta2,monto,largo);		
