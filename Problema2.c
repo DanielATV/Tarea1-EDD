@@ -8,6 +8,19 @@ typedef struct {
 	char direccion[51];	
 } clienteBanco;
 
+/*****
+* int buscar
+******
+* Busca el indice de la estructura desada en el arreglo con todas las estructuras del archivo clientes, mediante busqueda binaria.
+******
+* Input:
+* clienteBanco *clientes : Puntero al arreglo de estructras de los clientes.
+* int cuenta : Cuenta que hay que buscar en el arreglo.
+** int largo : Largo del arreglo.
+******
+* Returns:
+* int, retorna el indice de la estructura, en el caso de no encontarlo retorna -1.
+*****/
 int buscar(clienteBanco *clientes,int cuenta,int largo){
 	int index;
 	int medio,limsup,liminf;
