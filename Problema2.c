@@ -58,8 +58,9 @@ void transferencia(clienteBanco *clientes,int cuenta,int cuenta2, int monto,int 
 
 void actualizarSaldos(char *clientes, char *transacciones){
 	FILE *fp;
-	char aux;
 	int caux, caux2,caux3,i,j,cont;
+	char aux[100];
+	char aux2;
 	i = 0;
 	cont = 0;
 	clienteBanco *temp;
@@ -98,24 +99,25 @@ void actualizarSaldos(char *clientes, char *transacciones){
 		exit(1);
 	}
 	
-	
 	while (fgets(aux,sizeof(aux),fp)){
-		i = sscanf(aux,"%c %d %d %d", &aux2,&caux,&caux2,&caux3);
+		j = sscanf(aux,"%c %d %d %d", &aux2,&caux,&caux2,&caux3);
 
-		if( i == 3){
+		if( j == 3){
 			if( aux2 == '+')abonar(temp,caux,caux2,i);
 			else restar(temp,caux,caux2,i); 
-			printf("%c %d %d\n",aux2 ,caux,caux2);
+			
 		}
-		else if( i == 4){
+		else if( j == 4){
 			if( aux2 == '>') transferencia(temp,caux,caux2,caux3,i);
-			printf("%c %d %d %d\n", aux2,caux,caux2,caux3);
+			
 		}
-		else if( i == 0){
+		else if( j == 0){
 			printf("No se pudo leer linea\n");
 			exit(1);
 		}
 	}
+
+
 	fclose(fp);
 	fp = fopen(clientes,"w");
 
@@ -124,6 +126,7 @@ void actualizarSaldos(char *clientes, char *transacciones){
 	}
 	fclose(fp);
 	free(temp);
+
 	return;
 	
 }
