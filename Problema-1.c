@@ -139,7 +139,7 @@ int main(int argv, char **argc){
 	
 	/*Ahora los guardo */
 	for(i = 0; i < n; i++ ){
-		if(fscanf(fp,"%s",N[i])){
+		if(fscanf(fp,"%s",N[i]) == 0){
 			printf("Error al leer el archivo\n");
 			exit(1);
 		}
@@ -161,7 +161,7 @@ int main(int argv, char **argc){
 
 	for(i = 0; i < m; i++){
 
-		if(fscanf(fp,"%s",aux1)){
+		if(fscanf(fp,"%s",aux1) == 0){
 			printf("Error al leer el archivo\n");
 			exit(1);
 		}
