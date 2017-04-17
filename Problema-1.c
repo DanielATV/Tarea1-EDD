@@ -1,9 +1,19 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+/*Integrantes: 
+Nombre: Fabián Ignacio Jiménez Olivares
+Rol: 201673503-8,
+Paralelo:200
+Nombre Daniel Toro
+Rol:
+Paralelo: 200
+Nomre: Sebastian Danilo Godinez San Martin
+Rol: 201673520-8
+Paralelo: 200*/
 
-/* nombre funcion: minuscula
-  recibe: un puntero a la palabra
+/* nombre funcion: void minuscula
+  recibe: char *a:un puntero a la palabra
   devuelve: nada
   que hace: transforma a minuscula todas las letras que esten en mayuscula, usando el mismo
   arreglo, 
@@ -47,46 +57,50 @@ void minuscula(char *a){
 	return;
 }
 
+/* nombre funcion:int comparacion
+  recibe: char *arreglo, char *palabra :dos arreglos (basicamente dos palabras)
+  devuelve: int 1 o 0 dependiendo si son anagramas o no
+  que hace: en dos arreglos de int temporales almacena la cantidad de caracteres que tiene cada palabra
+  luego compara si los 2 arreglos son el mismo o no
+*/
 
-int check_anagram(char a[], char b[])
-{
-   int first[26] = {0}, second[26] = {0}, c = 0;
- 
-   for(c = 0; a[c] != '\0'; c++) first[a[c]-'a']++;
+int comparacion(char *arreglo, char *palabra){
+	/* los arreglos son 26 porque corresponde a la cantidad de letras en el abcedario
+	y los llenamos de 0*/
+   int first[26] = {0}, second[26] = {0}, i = 0;
+ 	
+ 	/* aca hace la cuenta para las 2 palabras*/
+   for(i = 0; arreglo[i] != '\0'; i++) first[arreglo[i]-'a']++;
 
-   for(c = 0; b[c] != '\0'; c++) second[b[c]-'a']++;
+   for(i = 0; palabra[i] != '\0'; i++) second[palabra[i]-'a']++;
 
- 
-   for (c = 0; c < 26; c++) if (first[c] != second[c]) return 0;
+ 	/*aca compara los 2 arreglos generados */
+   for (i = 0; i < 26; i++) if (first[i] != second[i]) return 0; /* si no son iguales retorna 0*/
 
    return 1;
 }
 
 
-/* nombre funcion: anagramas
-  recibe: un arreglo de strings(arreglo de char), un entero que dice lo grande que es el arreglo
-  y la palabra para comparar
-  devuelve: cantidad de palabras que son anagramas con palabra
-  que hace: llama a iguales el cual recorre ambos strings y ve si son iguales en codigo ascii
+/* nombre funcion:int anagramas
+  recibe:char** S :un arreglo de strings(el string es basicamente un arreglo de char), int n: un entero que dice lo grande que es
+   el arreglo y char *str: la palabra para comparar
+  devuelve: int total: cantidad de palabras que son anagramas con palabra
+  que hace: llama a comparacion y va sumando al contador si son iguales
 */
 int anagramas(char **S,int n, char *str)
 {
 
 	int total = 0;
-	for (int i =0;i<n;i++){
-		if (check_anagram(S[i],str))
-			total +=1;
-
-	}
+	for (int i =0;i<n;i++) total += comparacion(S[i],str);
 
 	return total;
 }
 
-/* nombre funcion: ordenar arreglo de palabras
-  recibe: un puntero a un arreglo
-  devuelve: nada
-  que hace: transforma a minuscula y ordena todas las palabras
-  que estan en el arreglo
+/* nombre funcion: int main
+  recibe: int argv:un entero(no se usa) y char **argc:un arreglo con palabras
+  devuelve: int 0: por convenio
+  que hace: lee el archivo, luego de pedir memoria para n elementos los guarda en un arreglo de arreglos
+  luego lee m veces y compara con la funcion anagramas
 */
 
 
@@ -115,10 +129,20 @@ int main(int argv, char **argc){
 		printf("Error al pedir memoria\n");
 		exit(1);
 	}
-	for(i = 0; i < n; i++)N[i] = (char *)calloc(200,sizeof(char));
+	for(i = 0; i < n; i++){
+		N[i] = (char *)calloc(200,sizeof(char));
+		if(N[i] == NULL){
+			printf("Error al pedir memoria\n");
+			exit(1);
+		}
+	}
+	
 	/*Ahora los guardo */
 	for(i = 0; i < n; i++ ){
-		fscanf(fp,"%s",N[i]);
+		if(fscanf(fp,"%s",N[i])){
+			printf("Error al leer el archivo\n");
+			exit(1);
+		}
 		minuscula(N[i]);
 	}
 
@@ -128,7 +152,7 @@ int main(int argv, char **argc){
 		exit(1);
 	}
 
-	/* creo el archivo resultante */
+	/* se crea el archivo resultante */
 	new = fopen("salida-1.txt","w+");
 	if(new == NULL){
 		printf("Error al crear el archivo\n");
@@ -137,7 +161,10 @@ int main(int argv, char **argc){
 
 	for(i = 0; i < m; i++){
 
-		fscanf(fp,"%s",aux1);
+		if(fscanf(fp,"%s",aux1)){
+			printf("Error al leer el archivo\n");
+			exit(1);
+		}
 
 		minuscula(aux1);
 
@@ -146,13 +173,13 @@ int main(int argv, char **argc){
 
 	fclose(fp);
 	fclose(new);
-
+	/*for(i = 0; i<n; i++) free(N[i]); lo comentamos porque tira error juntos o separados
+	free(N); */
 	printf("Listo!\n");
 
 	return 0;
 
 }
-
 
 /* ACA ESTA EL DE 30 SEGUNDOS,OCUPA MUCHOS RECURSOS */
 
