@@ -1,17 +1,14 @@
-Estudiante3:
 Nombre: 
 Rol:   
 Paralelo:
 Programó: 
 
-Estudiante3:
-Nombre: Fabián Ignacio Jiménez Olivares
-Rol:    201673503-8,
-Paralelo:200
-Programó: funcion ordenarpalabra, funcion anagrama.
+Nombre: 
+Rol:    
+Paralelo:
+Programó: 
 
-Estudiante3:
 Nombre: Fabián Ignacio Jiménez Olivares
 Rol:    201673503-8
 Paralelo:200
-Programó: funcion ordenarpalabra, funcion anagrama, funciones no utilizadas.
+Programó:  funcion anagrama, funciones no utilizadas (puestas en readme).
