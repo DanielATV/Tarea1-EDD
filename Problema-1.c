@@ -18,6 +18,7 @@ void minuscula(char *a){
 		if ((65 <= a[i]) && (a[i] <= 90)){ /* Pregunta si la letra esta en mayus*/
 			a[j++] = a[i] + 32;
 		}
+
 		/* Aca estan las condiciones para el resto de letras raras */
 		else if(a[i] == -61){ /* todas las letras raras empieza con -61 */
 			if (a[i+1] == -95 || a[i+1] == -127){
@@ -35,9 +36,6 @@ void minuscula(char *a){
 			else if(a[i+1] == -70 || a[i+1] == -102){
 				a[j++] = 'u';
 			}
-			else{ /* como no consideraremos ninguna letra mas, la ultima sera ñ */
-				a[j++] = '{';
-			}
 			++i;
 		}
 		else{
@@ -49,35 +47,21 @@ void minuscula(char *a){
 	return;
 }
 
-/* nombre funcion: ordenar palabra
-  recibe: un puntero a una palabra
-  devuelve: nada
-  que hace: ordena las palabras en orden inverso al abcedario
-*/
 
-void ordenarpalabra(char *a){
-	int n= strlen(a);
-	int i,j,aux;
+int check_anagram(char a[], char b[])
+{
+   int first[26] = {0}, second[26] = {0}, c = 0;
+ 
+   for(c = 0; a[c] != '\0'; c++) first[a[c]-'a']++;
 
-	for(i=0;i<=n-1;i++){
-		for(j=0;j<n-1-i;j++){
-			if(a[j]<a[j+1]){
-				aux = a[j];
-				a[j] = a[j+1];
-				a[j+1] = aux;
-			}
-		}
-	}
+   for(c = 0; b[c] != '\0'; c++) second[b[c]-'a']++;
+
+ 
+   for (c = 0; c < 26; c++) if (first[c] != second[c]) return 0;
+
+   return 1;
 }
 
-/* Las siguientes 3 funciones son para anagrama */
-
-int iguales(char *pal1,char *pal2){
-	int i;
-	for(i = 0; pal1[i] != '\0' || pal2[i] != '\0'; i++) if (pal1[i] != pal2[i]) break;
-	return (pal1[i] == pal2[i]);
-}
-	
 
 /* nombre funcion: anagramas
   recibe: un arreglo de strings(arreglo de char), un entero que dice lo grande que es el arreglo
@@ -90,10 +74,11 @@ int anagramas(char **S,int n, char *str)
 
 	int total = 0;
 	for (int i =0;i<n;i++){
-		if (iguales(S[i],str))
+		if (check_anagram(S[i],str))
 			total +=1;
 
 	}
+
 	return total;
 }
 
@@ -103,15 +88,6 @@ int anagramas(char **S,int n, char *str)
   que hace: transforma a minuscula y ordena todas las palabras
   que estan en el arreglo
 */
-
-void ordenarArregloS(char **A, int cant){
-	int i;
-	for(i = 0; i < cant; i++){
-		minuscula(A[i]);
-		ordenarpalabra(A[i]);
-	}
-}
-
 
 
 int main(int argv, char **argc){
@@ -140,15 +116,12 @@ int main(int argv, char **argc){
 		exit(1);
 	}
 	for(i = 0; i < n; i++)N[i] = (char *)calloc(200,sizeof(char));
-
 	/*Ahora los guardo */
 	for(i = 0; i < n; i++ ){
 		fscanf(fp,"%s",N[i]);
+		minuscula(N[i]);
 	}
 
-	/* aplicamos los cambios al arreglo */
-	ordenarArregloS(N,n);
-	printf("termino de ordenar el arreglo\n");
 	/*Ahora mientras vemos cada linea, vemos si es anagrama*/
 	if(fscanf(fp,"%d",&m) == 0){
 		printf("Error al leer la linea\n");
@@ -161,18 +134,19 @@ int main(int argv, char **argc){
 		printf("Error al crear el archivo\n");
 		exit(1);
 	}
-		printf("%d\n", m);
 
 	for(i = 0; i < m; i++){
+
 		fscanf(fp,"%s",aux1);
+
 		minuscula(aux1);
-		ordenarpalabra(aux1);
+
 		fprintf(new, "%d\n",anagramas(N,n,aux1)); 
 	}
 
 	fclose(fp);
 	fclose(new);
-		
+
 	printf("Listo!\n");
 
 	return 0;
