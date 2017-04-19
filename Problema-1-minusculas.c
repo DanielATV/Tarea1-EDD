@@ -13,7 +13,7 @@ void cantcara(char *palabra ,int *cantidad){
 	recorro letra por letra de la palabra y segun condiciones paso la letra a minuscula */
 	for (i = 0, j = 0; palabra[i] != '\0'; i++){
 		l = (int)palabra[i];
-		suma++;
+		
 		if ((65 <= palabra[i]) && (palabra[i] <= 90)){ /* Pregunta si la letra esta en mayus*/
 			palabra[j++] = palabra[i] + 32;
 			
@@ -51,6 +51,8 @@ void cantcara(char *palabra ,int *cantidad){
 			palabra[j++] = palabra[i];
 			cantidad[palabra[i]-'a']++;
 		}
+
+		if (palabra[i] == '\0') suma = i;
 		
 	}
 	
@@ -122,7 +124,7 @@ int main(int argv, char *argc[]){
 
 	/* Creo el arreglo para la primera cantidad de numeros*/
 	TEST = calloc(n,sizeof(int *));
-	for(i = 0; i < n; i++)TEST[i] = (int *)calloc(26,sizeof(int));
+	for(i = 0; i < n; i++)TEST[i] = (int *)calloc(27,sizeof(int));
 
 	/*Ahora los guardo */
 	for(i = 0; i < n; i++ ){
