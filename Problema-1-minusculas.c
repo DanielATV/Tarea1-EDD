@@ -2,104 +2,161 @@
 #include <stdlib.h>
 #include <string.h>
 
-/* nombre funcion: minuscula
-  recibe: un puntero a la palabra
-  devuelve: el mismo puntero
-  que hace: transforma a minuscula todas las letras que esten en mayuscula
-  observacion: inclui un main para probarlo y la idea esque en este mismo codigo quitemos los acentos
-*/
-
-void minuscula(char *a){
-	int long_palabra = strlen(a), j, i; /* j = cantidad del nuevo arreglo */
-	char *aux;
-	aux = (char *)malloc(sizeof(char)*long_palabra);
+void cantcara(char *palabra ,int *cantidad){
+	
+	int  j, i; /* j = cantidad del nuevo arreglo */
+	int l;
+	int suma;
+	//cantidad[27]=strlen(palabra);
 
 	/* Dentro del for: 
 	recorro letra por letra de la palabra y segun condiciones paso la letra a minuscula */
-	for (i = 0, j = 0; i < long_palabra; i++){
-		if ((65 <= a[i]) && (a[i] <= 90)){ /* Pregunta si la letra esta en mayus*/
-			a[i] += 32;
-			aux[j++] = a[i];
+	for (i = 0, j = 0; palabra[i] != '\0'; i++){
+		l = (int)palabra[i];
+		suma++;
+		if ((65 <= palabra[i]) && (palabra[i] <= 90)){ /* Pregunta si la letra esta en mayus*/
+			palabra[j++] = palabra[i] + 32;
+			
+			cantidad[l-65]++;
 		}
+
 		/* Aca estan las condiciones para el resto de letras raras */
-		else if(a[i] == -61){ /* todas las letras raras empieza con -61 */
-			if (a[i+1] == -95 || a[i+1] == -127){
-				aux[j++] = 'a';
+		else if(palabra[i] == -61){ /* todas las letras raras empieza con -61 */
+			if (palabra[i+1] == -95 || palabra[i+1] == -127){
+				palabra[j++] = 'a';
+				cantidad[((int)'a')-97]++;
 			}
-			else if (a[i+1] == -87 || a[i+1] == -119){
-				aux[j++] = 'e';
+			else if (palabra[i+1] == -87 || palabra[i+1] == -119){
+				palabra[j++] = 'e';
+				cantidad[((int)'e')-97]++;
+				
 			}
-			else if(a[i+1] == -83 || a[i+1] == -115){
-				aux[j++] = 'i';
+			else if(palabra[i+1] == -83 || palabra[i+1] == -115){
+				palabra[j++] = 'i';
+				cantidad[((int)'i')-97]++;
+				
 			}
-			else if(a[i+1] == -77 || a[i+1] == -109){
-				aux[j++] = 'o';
+			else if(palabra[i+1] == -77 || palabra[i+1] == -109){
+				palabra[j++] = 'o';
+				cantidad[((int)'o')-97]++;
 			}
-			else if(a[i+1] == -70 || a[i+1] == -102){
-				aux[j++] = 'u';
+			else if(palabra[i+1] == -70 || palabra[i+1] == -102){
+				palabra[j++] = 'u';
+				cantidad[((int)'u')-97]++;
 			}
-			else{ /* como no consideraremos ninguna letra mas, la ultima sera ñ */
-				aux[j++] = '{';
-			}
+			
 			++i;
 		}
 		else{
-			aux[j++] = a[i];
+			palabra[j++] = palabra[i];
+			cantidad[palabra[i]-'a']++;
 		}
+		
 	}
-	strcpy(a,aux);
-	free(aux);
+	
+	palabra[j] = '\0';
+	//strcat(palabra,'\0');
+	cantidad[27] =suma;
+	//for(i = 0; palabra[i] != '\0'; i++) cantidad[palabra[i]-'a']++;
+
 	return;
 }
 
-void ordenarpalabra(char *a)
+int check_anagram(int *arreglo, int *palabra)
 {
-	
-	
-	int n= strlen(a);
-	//printf("%s\n",a);
-	//printf("%d\n",n);
+   int c;
+ 
+   for (c = 26; c >= 0; c--) if (arreglo[c] != palabra[c]) return 0;
+
+   return 1;
+}
 
 
+/* nombre funcion: anagramas
+  recibe: un arreglo de strings(arreglo de char), un entero que dice lo grande que es el arreglo
+  y la palabra para comparar
+  devuelve: cantidad de palabras que son anagramas con palabra
+  que hace: llama a iguales el cual recorre ambos strings y ve si son iguales en codigo ascii
+*/
+int anagramas(void **arreglo,int n, char *palabra)
+{
+	int total = 0 , cantpalabra[27] = {0};
+	//printf("aaa");
+	cantcara(palabra, cantpalabra);
+	for (int i =0;i<n;i++){
+		if (check_anagram(arreglo[i],cantpalabra))
+			total +=1;
 
-	//if ('a' < 'b')
-	//	printf("lo es\n");
-	
-
-	int i,j,aux;
-
-	for(i=0;i<=n-1;i++)
-	{
-		for(j=0;j<n-1-i;j++)
-		{
-			//printf("%d\n",(int)a[j]>(int)a[j+1]);
-			if(a[j]<a[j+1])
-			{
-				aux = a[j];
-				//printf("aux es %c\n",aux);
-				a[j] = a[j+1];
-				//printf("aj es %c\n",a[j]);
-				a[j+1] = aux;
-				//printf("aj+1 es %c\n",a[j+1]);
-				//printf("a0 es %c\n",a[0]);
-				//printf("la palabra es %s\n",a);	
-			}
-		}
 	}
 
-	//printf("%c\n",a[0]);
-	//printf("%s\n",a);
-	//return a;
+	return total;
 }
 
-/* Para ver que funcione correctamente*/
-int main(){
-	char palabra[65];
-	strcpy(palabra,"Ñandú");
-	minuscula(palabra);
+/* nombre funcion: ordenar arreglo de palabras
+  recibe: un puntero a un arreglo
+  devuelve: nada
+  que hace: transforma a minuscula y ordena todas las palabras
+  que estan en el arreglo
+*/
+
+
+int main(int argv, char *argc[]){
+	int n, m, i;
+	char aux1[201];
+	FILE *fp, *new;
+	void **TEST;
+
+	/* Abre el archivo, si hay error termina
+	el proceso*/
+	fp = fopen(argc[1],"r");
+	if(fp == NULL){
+		printf("Error al abrir el archivo\n");
+		exit(1);
+	}
+
+	/* Guardo el numero de la primera cantidad de numeros*/
+	if(fscanf(fp,"%d",&n) == 0){
+		printf("Error al leer la linea\n");
+		exit(1);
+	}
+
+	/* Creo el arreglo para la primera cantidad de numeros*/
+	TEST = calloc(n,sizeof(int *));
+	for(i = 0; i < n; i++)TEST[i] = (int *)calloc(26,sizeof(int));
+
+	/*Ahora los guardo */
+	for(i = 0; i < n; i++ ){
+		fscanf(fp,"%s",aux1);
+		cantcara(aux1,TEST[i]);
+	}
+	/*Ahora mientras vemos cada linea, vemos si es anagrama*/
+	if(fscanf(fp,"%d",&m) == 0){
+		printf("Error al leer la linea\n");
+		exit(1);
+	}
+
+	/* creo el archivo resultante */
+	new = fopen("salida-1.txt","w+");
+	if(new == NULL){
+		printf("Error al crear el archivo\n");
+		exit(1);
+	}
+
+	for(i = 0; i < m; i++){
+
+		fscanf(fp,"%s",aux1);
+
+		fprintf(new, "%d\n",anagramas(TEST,n,aux1)); 
+	}
+
 	
-	ordenarpalabra(palabra);
-	printf("%s\n",palabra);
-	return 0;
-}
+	for(i =  n-1; i > -1; i--) free((void *)TEST[i]);
+	free(TEST);
 
+	fclose(fp);
+	fclose(new);
+	printf("Listo!\n");
+
+	return 0;
+
+}
