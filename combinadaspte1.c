@@ -2,6 +2,13 @@
 #include <stdlib.h>
 #include <string.h>
 
+/* nombre funcion: cantcara
+  recibe: un puntero char y un puntero entero-
+  devuelve: nada.
+  que hace: guarda en el puntero el numero de letras que contiene la palabra,
+  	    ademas de convertir la palabra en minuscula y sin acentos.
+*/
+
 void cantcara(char *palabra ,int *cantidad){
 	
 	int  j, i; /* j = cantidad del nuevo arreglo */
@@ -57,6 +64,14 @@ void cantcara(char *palabra ,int *cantidad){
 	return;
 }
 
+/* nombre funcion: check_anagram
+  recibe: dos punteros entero
+  devuelve: entero
+  que hace: compara los punteros que indican el numero de letras, si difieren en uno
+  		, entonces no son anagramas, si no son retorna 0, si son retorna 1.
+ 
+*/
+
 int check_anagram(int *arreglo, int *palabra)
 {
    int c;
@@ -87,12 +102,7 @@ int anagramas(void **arreglo,int n, char *palabra)
 	return total;
 }
 
-/* nombre funcion: ordenar arreglo de palabras
-  recibe: un puntero a un arreglo
-  devuelve: nada
-  que hace: transforma a minuscula y ordena todas las palabras
-  que estan en el arreglo
-*/
+
 
 
 int main(int argv, char *argc[]){
