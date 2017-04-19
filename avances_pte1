@@ -2,6 +2,13 @@
 #include <stdlib.h>
 #include <string.h>
 
+
+/* nombre funcion: cant_cara
+  recibe: 
+  devuelve: 
+  que hace: 
+*/
+
 void cantcara(char *palabra ,int *cantidad){
 	
 	int  j, i; /* j = cantidad del nuevo arreglo */
@@ -66,8 +73,8 @@ void cantcara(char *palabra ,int *cantidad){
 
 /* nombre funcion: check_anagram
   recibe: dos punteros de int, que indican la cantidad de letras que tiene cada palabra, siendo el esa
-  devuelve: 1 si tienen igual largo , e igual numero de letras(A-Z
-  que hace: llama a iguales el cual recorre ambos strings y ve si son iguales en codigo ascii
+  devuelve: 1 si tienen igual largo e igual numero de letras. 0 otro caso.
+  que hace: compara el total de palabras (arreglo[26],y luego cantidad de cada letra)
 */
 
 int check_anagram(int *arreglo, int *palabra)
