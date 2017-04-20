@@ -133,7 +133,7 @@ int main(int argv, char *argc[]){
 
 	/* Guardo el numero de la primera cantidad de numeros*/
 	if(fscanf(fp,"%d",&n) == 0){
-		printf("Error al leer la linea\n");
+		printf("Error al leer la primera linea\n");
 		exit(1);
 	}
 
@@ -156,7 +156,7 @@ int main(int argv, char *argc[]){
 	for(i = 0; i < n; i++ ){
 	
 		if (fscanf(fp,"%s",aux1) ==0){
-			printf("Error al leer la linea\n");
+			printf("Error al leer la linea de una de las palabras de la primera lista \n");
 			exit(1);
 		}
 		cantcara(aux1,TEST[i]);
@@ -164,7 +164,7 @@ int main(int argv, char *argc[]){
 	}
 	/*Ahora mientras vemos cada linea, vemos si es anagrama*/
 	if(fscanf(fp,"%d",&m) == 0){
-		printf("Error al leer la linea\n");
+		printf("Error al leer la linea que contiene el numero de palabras de la segunda lista\n");
 		exit(1);
 	}
 
@@ -178,7 +178,7 @@ int main(int argv, char *argc[]){
 	for(i = 0; i < m; i++){
 
 		if (fscanf(fp,"%s",aux2) ==0){
-			printf("Error al leer la linea\n");
+			printf("Error al leer la linea de una de las palabras de la segunda linea\n");
 			exit(1);
 		}
 		fprintf(new, "%d\n",anagramas(TEST,n,aux2)); 
