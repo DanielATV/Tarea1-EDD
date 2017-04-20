@@ -1,12 +1,12 @@
-Nombre: 
-Rol:   
-Paralelo:
-Programó: 
+Nombre: Sebastian Daniel Godinez San Martin
+Rol: 201673520-8
+Paralelo: 200
+Programó: Main (1 y 2), funcion check_anagrama, funcion cantcara
 
 Nombre: Fabián Ignacio Jiménez Olivares
 Rol:    201673503-8
 Paralelo:200
-Programó:  funcion anagrama, funciones no utilizadas (puestas en readme).
+Programó:  funcion anagrama, funcion cantcara.
 
 Nombre: Daniel Toro V.
 Rol: 201673595-k
