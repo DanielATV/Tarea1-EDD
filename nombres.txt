@@ -3,12 +3,12 @@ Rol:
 Paralelo:
 Programó: 
 
-Nombre: 
-Rol:    
-Paralelo:
-Programó: 
-
 Nombre: Fabián Ignacio Jiménez Olivares
 Rol:    201673503-8
 Paralelo:200
 Programó:  funcion anagrama, funciones no utilizadas (puestas en readme).
+
+Nombre: Daniel Toro V.
+Rol: 201673595-k
+Paralelo: 200
+Programó: funcion buscar,abonar,restar,transferencias, actualizarSaldo
