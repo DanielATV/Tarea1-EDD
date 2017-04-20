@@ -100,9 +100,10 @@ int check_anagram(int *arreglo, int *palabra)
 int anagramas(void **arreglo,int n, char *palabra)
 {
 	int total = 0 , cantpalabra[27] = {0};
+	int i;
 
 	cantcara(palabra, cantpalabra);
-	for (int i =0;i<n;i++){
+	for (i =0;i<n;i++){
 		if (check_anagram(arreglo[i],cantpalabra))
 			total +=1;
 
