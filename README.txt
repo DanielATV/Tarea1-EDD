@@ -1,5 +1,6 @@
-
-
+################
+Para el Problema 1, lo hicimos en base a los primeros archivos enviados, es decir, para UTF-8, eso pos saludos.
+################
 
 Funciones extra no utilizadas:
 
